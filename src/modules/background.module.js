@@ -1,5 +1,24 @@
-import {Module} from '../core/module'
+import { Module } from "../core/module";
+import { random } from "../utils.js";
 
 export class BackgroundModule extends Module {
+  constructor(type, text) {
+    super(type, text);
+  }
 
+  #getRandomColor() {
+    const random1 = random(0, 255);
+    const random2 = random(0, 255);
+    const random3 = random(0, 255);
+
+    document.body.style.background = `rgb(${random1}, ${random2}, ${random3})`;
+  }
+
+  trigger() {
+    const backgroundColorModule = document.querySelectorAll(this.type);
+
+    backgroundColorModule.addEventListener("click", (event) => {
+      this.#getRandomColor();
+    });
+  }
 }
