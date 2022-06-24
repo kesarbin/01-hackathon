@@ -2,6 +2,8 @@ import { Module } from "../core/module";
 import { random } from "../utils.js";
 
 export class BackgroundModule extends Module {
+  #backgroundColorModule;
+
   constructor(type, text) {
     super(type, text);
   }
@@ -15,10 +17,11 @@ export class BackgroundModule extends Module {
   }
 
   trigger() {
-    const backgroundColorModule = document.querySelectorAll(this.type);
-
-    backgroundColorModule.addEventListener("click", (event) => {
-      this.#getRandomColor();
-    });
+    this.#backgroundColorModule = document.querySelector(".menu-item");
+    if (this.#backgroundColorModule.dataset.type === this.type) {
+      this.#backgroundColorModule.addEventListener("click", (event) => {
+        this.#getRandomColor();
+      });
+    }
   }
 }

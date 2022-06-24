@@ -2,18 +2,14 @@ import { Menu } from "./core/menu";
 
 export class ContextMenu extends Menu {
   #menu;
-  #menuItem;
 
   constructor(selector) {
     super(selector);
     this.#menu = document.querySelector(".menu");
-    this.#menuItem = document.createElement("li");
   }
 
   add(module) {
-    this.#menuItem.className = "menu-item";
-    this.#menuItem.textContent = "module.text";
-    this.#menu.append(this.#menuItem);
+    this.#menu.insertAdjacentHTML("afterbegin", module.toHTML());
   }
 
   open() {
