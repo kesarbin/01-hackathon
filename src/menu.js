@@ -18,8 +18,17 @@ export class ContextMenu extends Menu {
 
       this.#menu.classList.add("open");
       this.#menu.style.position = "absolute";
-      this.#menu.style.left = `${event.x}px`;
-      this.#menu.style.top = `${event.y}px`;
+
+      if (event.x > event.view.outerWidth - 150) {
+        this.#menu.style.left = `${event.x - 150}px`;
+        this.#menu.style.top = `${event.y}px`;
+      } else if (event.y > event.view.outerHeight - 100) {
+        this.#menu.style.top = `${event.y - 35}px`;
+        this.#menu.style.left = `${event.x}px`;
+      } else {
+        this.#menu.style.left = `${event.x}px`;
+        this.#menu.style.top = `${event.y}px`;
+      }
     });
   }
 

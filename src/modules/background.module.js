@@ -14,6 +14,7 @@ export class BackgroundModule extends Module {
     const random3 = random(0, 255);
 
     document.body.style.background = `rgb(${random1}, ${random2}, ${random3})`;
+    document.body.style.transition = "2s";
   }
 
   trigger() {
